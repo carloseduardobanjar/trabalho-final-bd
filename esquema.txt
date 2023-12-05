@@ -5,8 +5,8 @@ CREATE TABLE Filmes (
     homepage VARCHAR(255),
     adult BOOLEAN,
     budget INTEGER,
-    orig_language CHAR(2),
-    orig_title VARCHAR(50),
+    original_language CHAR(2),
+    original_title VARCHAR(50),
     overview VARCHAR(2000),
     id_coletanea INTEGER,
     title VARCHAR(50),
@@ -21,7 +21,7 @@ CREATE TABLE Avaliacao (
     id INTEGER PRIMARY KEY,
     rating FLOAT,
     timestamp TIMESTAMP,
-    id_filme INTEGER
+    id_movie INTEGER
 );
 
 CREATE TABLE Coletanea (
@@ -50,7 +50,7 @@ CREATE TABLE Producao (
 );
 
 CREATE TABLE genero_filme (
-    id_filme INTEGER,
+    id_movie INTEGER,
     id_genero INTEGER,
     PRIMARY KEY (id_filme, id_genero)
 );
@@ -63,7 +63,7 @@ CREATE TABLE keywords (
 
 CREATE TABLE Pessoa (
     id INTEGER PRIMARY KEY,
-    genre ENUM(H, M, Outro),
+    genero INTEGER,
     nome VARCHAR(50)
 );
  
