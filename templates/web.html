@@ -121,17 +121,24 @@
                 <input type="radio" name="opcao" value="opcao1"> Asc
                 <input type="radio" name="opcao" value="opcao2"> Desc
             </div>
-            <input type="submit" value="Buscar" onclick="minhaFuncao()">
+            <input type="submit" value="Buscar" onclick="obterValorDoInput()">
         </form>
         <table id="movieTable">
             <thead>
                 <tr>
-                    <th onclick="sortTable(0)">Título</th>
-                    <th onclick="sortTable(1)">Ano</th>
-                    <th onclick="sortTable(2)">Gênero</th>
+                    {% for item in cabecalho %}
+                        <th>{{item}}</th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
+                {% for linha in corpo %}
+                    <tr>
+                        {% for item in linha %}  
+                            <td>{{item}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </main>
@@ -146,9 +153,15 @@
         </form>
     </main>
     <script>
-        function minhaFuncao() {
-           console.log("AAAAAAA");
+        function obterValorDoInput() {
+            let inputElement = document.getElementById("searchInput");
+
+            let valorDoInput = inputElement.value;
+            
+            let url = '/ator_filme/' + valorDoInput;
+            
+            window.location.href = url;
         }
-    </script>
+        </script>
 </body>
 </html>
