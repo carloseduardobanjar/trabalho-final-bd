@@ -91,7 +91,7 @@ def pop_acima():
                        charset='utf8')
     cursor = conn.cursor()
 
-    cursor.execute(f"SELECT id, orig_title, popularity FROM Filmes WHERE popularity > (SELECT AVG(popularity) FROM Filmes) LIMIT 20;")
+    cursor.execute(f"SELECT id, orig_title, popularity FROM Filmes WHERE popularity > (SELECT AVG(popularity) FROM Filmes) ORDER BY popularity DESC LIMIT 20;")
     rows = cursor.fetchall()
 
     conn.commit()
