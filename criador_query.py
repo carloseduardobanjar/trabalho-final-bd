@@ -28,7 +28,7 @@ def addpessoa(person,lista,id_pessoas,maxval):
 
     lista.append({"id":person["id"], 
                             "gender":person["gender"],
-                            "name":person["name"]})
+                            "name":'\''+person["name"]+'\''})
     id_pessoas.add(person["id"])
     if(len(person["name"])>maxval["name"]):
         maxval.update({"name":len(person["name"])})
@@ -70,8 +70,8 @@ def addprod(idf,pessoa,lista,maxlen,check):
 
 #atualiza tamanho necessario dos atributos e constroi a query
 def query_pessoa(pessoas,maxlen):
-    arqv = open("pessoas.sql",'w')
-    strg = '''USE movies; 
+    arqv = open("q_pessoas.sql",'w')
+    strg = '''USE Movies; 
     ALTER TABLE Pessoa 
     MODIFY COLUMN nome VARCHAR({});
     INSERT INTO Pessoa VALUES '''.format(maxlen["name"])
@@ -88,7 +88,7 @@ def query_pessoa(pessoas,maxlen):
 #atualiza tamanho necessario dos atributos e constroi a query
 def query_atuacao(atuacao,maxlen):
     arqv = open("q_atuacao.sql",'w')
-    strg = '''USE movies; 
+    strg = '''USE Movies; 
     ALTER TABLE Atuacao 
     MODIFY COLUMN personagem VARCHAR({}),;
     INSERT INTO Atuacao VALUES '''.format(maxlen["character"])
@@ -106,7 +106,7 @@ def query_atuacao(atuacao,maxlen):
 #atualiza tamanho necessario dos atributos e constroi a query
 def query_producao(prod,maxlen):
     arqv = open("q_producao.sql",'w')
-    strg = '''USE movies; 
+    strg = '''USE Movies; 
     ALTER TABLE Producao 
     MODIFY COLUMN job VARCHAR({}),
     MODIFY COLUMN department VARCHAR({});
@@ -186,7 +186,7 @@ def formata_linha(record):
 #cria query dos filmes
 def cria_query_filme(movies,maxlen):
     arqv = open("q_movies.sql",'w')
-    strg = '''USE movies; 
+    strg = '''USE Movies; 
     ALTER TABLE Filmes 
     MODIFY COLUMN homepage VARCHAR({}),
     MODIFY COLUMN orig_title VARCHAR({}),
@@ -210,7 +210,7 @@ def cria_query_filme(movies,maxlen):
 #cria query de coletanea
 def cria_q_clt(clts,maxcolt):
     arqv = open("q_clt.sql",'w')
-    strg = '''USE movies; 
+    strg = '''USE Movies; 
     ALTER TABLE Coletanea 
     MODIFY COLUMN nome VARCHAR({});
     INSERT INTO Coletanea VALUES '''.format(maxcolt[0])
