@@ -189,7 +189,7 @@ def cria_query_filme(movies,maxlen):
     strg = '''USE Movies; 
     ALTER TABLE Filmes 
     MODIFY COLUMN homepage VARCHAR({}),
-    MODIFY COLUMN orig_title VARCHAR({}),
+    MODIFY COLUMN original_title VARCHAR({}),
     MODIFY COLUMN overview VARCHAR({}),
     MODIFY COLUMN title VARCHAR({}),
     MODIFY COLUMN status VARCHAR({});
@@ -213,7 +213,7 @@ def cria_q_clt(clts,maxcolt):
     strg = '''USE Movies; 
     ALTER TABLE Coletanea 
     MODIFY COLUMN nome VARCHAR({});
-    INSERT INTO Coletanea VALUES '''.format(maxcolt[0])
+    INSERT INTO Coletanea (nome,id) VALUES '''.format(maxcolt[0])
     arqv.write(strg)
 
     print("temos {} coletaneas".format(len(clts)))
